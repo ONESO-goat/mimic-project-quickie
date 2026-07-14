@@ -2,6 +2,7 @@ import ollama
 from helpers.config import Config
 from helpers.prompts import Prompts
 import json
+from typing import Any
 from google import genai
             
 class Helpers:
@@ -66,7 +67,7 @@ class Helpers:
                 if "503" in str(e):
                     print("⚠️ Gemini service unavailable, switching to ollama, please hold...")
                     self.backend = 'ollama'
-                    return self.validate_text(text=text, _use_ollama=True)  # Retry with Ollama
+                    return self._genrate(text=text, system_prompt=system_prompt, return_json=return_json, _use_ollama=True)  # Retry with Ollama
                 return '[]'
         
         else:  # Ollama

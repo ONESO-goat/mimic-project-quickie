@@ -6,7 +6,7 @@ if TYPE_CHECKING:
 
 class Ears:
     def __init__(self, brain: "Brain", agent_to_use:str, model:str):
-        self.wav_file_path = "audio/audio.wav"
+        self.wav_file_path = "audio/user_audio.wav"
         self.ai = agent_to_use
         self.whisper_model = WhisperModel(self.wav_file_path)
         self.brain = brain
