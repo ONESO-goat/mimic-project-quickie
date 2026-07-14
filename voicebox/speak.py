@@ -32,7 +32,7 @@ class Voice:
         }
         gender_or_option = gender_or_option.lower().strip()
         if not gender_or_option or gender_or_option not in voices.keys():
-            raise ValueError(f"Paramter is invalid")
+            raise ValueError(f"Paramter '{gender_or_option}' is invalid")
         
         self.engine.setProperty("voices", self.voices[voices[gender_or_option]].id)
         

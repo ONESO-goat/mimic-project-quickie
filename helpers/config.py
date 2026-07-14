@@ -2,18 +2,19 @@ import os
 import dotenv
 
 
-
+dotenv.load_dotenv("agent_keys")
 class Config:
     brain_file = "brain/mimic.json"
     
     # Ollama config
-    ollama_model_qwen = ""
+    ollama_model_qwen = 'qwen3:0.6b'
     
     # Gemini config
-    gemini_model = ""
-    gemini_api = 
+    gemini_model_id = 'gemini-2.5-flash'
+    gemini_api = os.getenv("GEMINI_API_KEY1")
     
     # AI constraints
+    thresholds =  None
     
     
     
