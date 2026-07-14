@@ -1,2 +1,4 @@
 agent_keys.env
+*.env
+*.wav
 *.onnx
