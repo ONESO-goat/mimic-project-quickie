@@ -1,4 +1,5 @@
 from voicebox.speak import Voice
+from voicebox.listen import Ears
 
 import subprocess
 
@@ -32,7 +33,11 @@ def edge_tts_test():
 
     asyncio.run(speak())
     
-if __name__ in "__main__":
-    voice = Voice()
-    voice.say("I am working", change_perferred_tts="pyttsx")
+def ear_test():
+    ears = Ears()
+    ears.sr_listen()
     
+if __name__ in "__main__":
+    # voice = Voice()
+    # voice.say("I am working", change_perferred_tts="pyttsx")
+    ear_test()
