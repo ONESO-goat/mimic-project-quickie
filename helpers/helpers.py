@@ -47,7 +47,8 @@ class Helpers:
                 "logic": "AI logical guess on what words were heard and what they could mean (using ONLY words from the known word list to explain)"
                 }}
         """
-
+        if not text or not system_prompt:
+            return 
         m = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": f"<<<TEXT>>>\n{text}\n<<<TEXT>>>"}

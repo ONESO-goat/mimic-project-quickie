@@ -31,13 +31,15 @@ class Mimic:
             response = self.agent._genrate(text=text, system_prompt=prompt)
             
             if not response or not isinstance(response, dict) or not response.get("content"):
-                raise ValueError(f"""[LEVEL 5 ERROR] The agent response didnt respond in a valid format.
+                print(f"""[LEVEL 5 ERROR] The agent response didnt respond in a valid format.
                                 
                                 \u2022 TYPE: {type(response)}\n
                                 \u2022 CONTENT: {response or "Response is broken and can not be added"}\n
                                 \u2022 length: {len(response) or "Can not be found"}\n
                                 
                                 """)
+                self.voice.say(text)
+                return True
                 
             self.talking_process(response['content'])
             self.brain.add_guess(response.get("logic", ""))
