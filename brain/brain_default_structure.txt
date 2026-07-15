@@ -47,6 +47,7 @@
     "favorite_words": [],
     
     "logic": {
+        "guesses": [],
         "word_associations": [
             {"word": "happy", "type": "positive", "score": 1},
             {"word": "friend", "type": "positive", "score": 1},

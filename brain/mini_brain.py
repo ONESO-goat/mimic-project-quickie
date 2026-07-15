@@ -1,5 +1,6 @@
 import json
 from helpers.config import Config
+import copy
 import random
 
 class MimicBrain:
@@ -19,28 +20,44 @@ class MimicBrain:
         text = text.lower().strip()
         if not text:
             return
+        brain = copy.deepcopy(self.brain)
         
         text_len = len(text.split())
         if text_len == 1:
-            self.brain['words'].append(text)
-            brain = self.brain
-        if text_len > 1 and text_len < 15:
-            self.brain['phrase'].append(text)
-            brain = self.loop_new_words(text)
-            
-        elif text_len > 15 and text_len < 20:
-            self.brain['sentence'].append(text)
-            brain = self.loop_new_words(text)
+            if text not in self.brain['words']:
+                brain['words'].append(text)
+                       
+        if text_len > 1 and text_len <= 15:
+            if text not in self.brain['phrase']:
+                brain['phrase'].append(text)
+                brain = self.loop_new_words(brain=brain, text=text)
+                
+        elif text_len > 15 and text_len <= 20:
+            if text not in self.brain['sentence']:
+                brain['sentence'].append(text)
+                brain = self.loop_new_words(brain=brain, text=text)
             
         else:
-            brain = self.loop_new_words(text)
-        self.save_to_brain(brain)
+            brain = self.loop_new_words(brain=brain, text=text)
+            
+        if brain != self.brain:
+            self.save_to_brain(brain)
     
-    def loop_new_words(self, text:str):
+    def loop_new_words(self, brain, text:str):
+     
         for word in text.split():
-                self.brain['words'].append(word)
-        return self.brain
+            if word not in brain['words']:
+            
+                brain['words'].append(word)
+        return brain
     
+    def add_guess(self, guess:str):
+        if not guess:
+            return
+        brain = copy.deepcopy(self.brain)
+        brain["logic"]['guesses'].append(guess)
+        self.save_to_brain(brain)
+        
     def save_to_brain(self, data:dict):
         with open(Config.brain_file, 'w') as f:
             json.dump(data, f, indent=4)

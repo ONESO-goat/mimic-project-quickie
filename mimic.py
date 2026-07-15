@@ -40,6 +40,7 @@ class Mimic:
                                 """)
                 
             self.talking_process(response['content'])
+            self.brain.add_guess(response.get("logic", ""))
             return True
         
         except Exception as ex:
@@ -47,24 +48,31 @@ class Mimic:
             return False
         
     
-    def hearing_process(self, silence_timeout:float=1.5, energy_threshold:int=400):
-        heard = self.ears.wait_for_wake_word()
-        if heard == "random":
-            self.voice.say_something_random()
-            return "random" # returns 'random' to alert a random word was said
+    def hearing_process(self, silence_timeout:float=1.5, energy_threshold:int=400, wait_for_call:bool=True):
+        if wait_for_call:
+            heard = self.ears.wait_for_wake_word()
+            if heard == "random":
+                self.voice.say_something_random()
+                return "random" # returns 'random' to alert a random word was said
+            
+            if heard is True:
+                return self.__listen_and_save(silence_timeout=silence_timeout, energy_threshold=energy_threshold)
         
-        if heard is True:
-            what_was_heard:str = self.ears.sr_listen(silence_timeout=silence_timeout, 
-                                                energy_threshold=energy_threshold)
-            if not what_was_heard:
+        return self.__listen_and_save(silence_timeout=silence_timeout, energy_threshold=energy_threshold)
+                   
+    def __listen_and_save(self, silence_timeout, energy_threshold):
+        
+        what_was_heard:str = self.ears.sr_listen(silence_timeout=silence_timeout, 
+                                                dynamic_energy=energy_threshold)
+        if not what_was_heard:
                 return ''
             
-            self.brain.save_new_word_or_sentance(what_was_heard)
-            find_favorite, word = self.brain.find_favorite_word(words_heard=what_was_heard.strip().split())
-            if find_favorite and word:
+        self.brain.save_new_word_or_sentance(what_was_heard)
+        find_favorite, word = self.brain.find_favorite_word(words_heard=what_was_heard.strip().split())
+        if find_favorite and word:
                 self.talking_process(f"me like word '{word}'")
                 time.sleep(1)
-            return what_was_heard
-        
+        return what_was_heard
+    
     def talking_process(self, agent_response:str):
         self.voice.say(text=agent_response)

@@ -10,6 +10,7 @@ class Helpers:
         if ai_to_use not in ['gemini', 'ollama']:
             raise ValueError(f"'{ai_to_use}' is not a valid AI")
         
+        self.ollama_model = 'qwen3:0.6b'
         self.backend = ai_to_use
         if self.backend == 'gemini' and api_key:
             # Use Gemini
@@ -22,9 +23,8 @@ class Helpers:
             
         else:
             # Use Ollama
-            print(f"API KEY MIGHT BE NONE: {api_key}")
+
             self.backend = 'ollama'
-            self.ollama_model = 'qwen3:0.6b'
             
             # Check if Ollama is available
             try:
@@ -49,7 +49,7 @@ class Helpers:
         """
 
         m = [
-            {"role": "sytstem", "content": system_prompt},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": f"<<<TEXT>>>\n{text}\n<<<TEXT>>>"}
         ]
         
@@ -61,12 +61,16 @@ class Helpers:
                 
                 # For Gemini, we convert the messages to their content format
                 # Note: Gemini 2.0+ handles system_instruction separately
-             
+                user_content = types.Content(
+                    role="user",
+                    parts=[types.Part.from_text(text=f"<<<TEXT>>>\n{text}\n<<<TEXT>>>")]
+                )
+                
                 response = self.client.models.generate_content(
                     model=self.llm, 
-                    contents=m, # Or pass the whole history
+                    contents=[user_content], 
                     config=types.GenerateContentConfig( 
-                        #system_instruction=p, # Best way for Gemini
+                        system_instruction=system_prompt,
                         response_mime_type="application/json" if return_json else None
                     )
                 )

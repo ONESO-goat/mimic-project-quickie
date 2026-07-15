@@ -11,7 +11,7 @@ class Config:
     
     # Gemini config
     gemini_model_id = 'gemini-2.5-flash'
-    gemini_api = os.getenv("GEMINI_API_KEY1")
+    gemini_api = os.getenv("GEMINI_API_KEY3")
     
     # AI constraints
     thresholds =  None

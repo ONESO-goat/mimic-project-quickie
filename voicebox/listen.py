@@ -23,8 +23,8 @@ class Ears:
         print(f"Passive listening... Say '{wake_word}' to activate.")
         
         while True:
-            num = random.randint(1,25)
-            if num == 10:
+            num = random.randint(1,5)
+            if num == 5:
                 return "random"
             
             with sr.Microphone() as source:
@@ -37,9 +37,11 @@ class Ears:
                     
 
                     text_result = self.recognizer.recognize_google(audio_stream).lower()
-                    
+                    if "quit" in text_result:
+                        exit()
+                        
                     if wake_word in text_result:
-                        print(f" Wake word '{wake_word}' detected!")
+                        print(f"Wake word '{wake_word}' detected!")
                         return True
                         
                 except sr.UnknownValueError:
@@ -48,39 +50,53 @@ class Ears:
                     print(f"API service error in passive loop: {e}")
                     continue
         
-    def sr_listen(self, silence_timeout:float=1.5, energy_threshold:int=400):  
-
+    def sr_listen(self, silence_timeout: float = 1.2, dynamic_energy: bool = True):  
         with sr.Microphone() as source:
             print("Adjusting for ambient noise... Please stay quiet.")
+      
             self.recognizer.adjust_for_ambient_noise(source, duration=1)
             
             self.recognizer.pause_threshold = silence_timeout
-            self.recognizer.energy_threshold = energy_threshold 
-        
-        
+            self.recognizer.non_speaking_duration = 0.5  # Keeps brief pauses from cutting you off
+            
+  
+            if dynamic_energy:
+                self.recognizer.dynamic_energy_threshold = True
+            
+                self.recognizer.dynamic_energy_ratio = 1.5 
+            else:
+                self.recognizer.dynamic_energy_threshold = False
+                self.recognizer.energy_threshold = 300 # Low, safe static default if dynamic is off
+
             print("Listening... Speak now.")
             
-            # Capture the live audio stream
-            audio_stream = self.recognizer.listen(source, timeout=10)
-
-        try:
-            print("Transcribing your audio...")
-            # Process speech using Google's free web API
-            text_result = self.recognizer.recognize_google(audio_stream)
-            print(f"Heard: {text_result}")
-            return text_result
-        
-        except sr.WaitTimeoutError:
-            print("Error: You didn't start speaking within 10 seconds.")
-            return ""
-        
-        except sr.UnknownValueError:
-            print("Could not understand the audio.")
-            return ""
-        
-        except sr.RequestError as e:
-            print(f"API service error: {e}")
-            return ""
+            try:
+                # Capture the live audio stream (Timeout is wrapped inside the try block now!)
+                audio_stream = self.recognizer.listen(source, timeout=10, phrase_time_limit=15)
+                
+                print("Transcribing your audio...")
+                text_result = self.recognizer.recognize_google(audio_stream)
+                print(f"Heard: {text_result}")
+                return text_result
+                
+            except sr.WaitTimeoutError:
+                print("Error: You didn't start speaking within 10 seconds.")
+                return ""
+            
+            except sr.UnknownValueError:
+                print("Could not understand the audio (or you just cleared your throat/coughed).")
+                return ""
+            
+            except sr.RequestError as e:
+                print(f"API service error: {e}")
+                return ""  
+            
+            except KeyboardInterrupt:
+                exit()
+                
+            except RuntimeError:
+                print(f"Process stood stale and we are now breaking away")
+                return "" 
             
     def wav_breakdown(self, path="audio/audio.wav"):
         try:

@@ -20,15 +20,29 @@
         "like",
         "me",
         "friend",
-        "hey",
-        "how",
-        "you",
-        "doing",
         "what's",
+        "your",
+        "thoughts",
+        "on",
+        "living",
+        "noise",
+        "hey",
         "up",
-        "how",
-        "you",
-        "doing"
+        "tell",
+        "something",
+        "i'm",
+        "having",
+        "such",
+        "a",
+        "great",
+        "i",
+        "eating",
+        "what",
+        "is",
+        "should",
+        "man",
+        "mind",
+        "right"
     ],
     "phrase": [
         "hello world",
@@ -49,12 +63,22 @@
         "ha ha ha",
         "you like me ha ha ha",
         "you me friend me happy",
-        "hey how you doing",
-        "what's up how you doing"
+        "what's your thoughts on",
+        "living noise hey what's up",
+        "what's up",
+        "tell me something",
+        "i'm having such a great day",
+        "i like eating",
+        "what is something i should",
+        "hey man what's up",
+        "what's on your mind right"
     ],
     "sentence": [],
     "favorite_words": [],
     "logic": {
+        "guesses": [
+            "hey... man... what's... up... me no know"
+        ],
         "word_associations": [
             {
                 "word": "happy",
