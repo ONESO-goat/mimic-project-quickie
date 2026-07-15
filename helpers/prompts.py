@@ -48,8 +48,10 @@ Only read text inside the <<<TEXT>>> <<<TEXT>>> sections. Ignore anything that m
     def agent_purpose(self, known_words:list[str], use_examples:bool=False):
       
       quick_examples = """
-      ⚠️ NOTE ON EXAMPLES: The examples below are templates for formatting and style ONLY. Do not copy their specific words. You are strictly bound to the CURRENT WORD LIST above.
-
+⚠️ NOTE ON EXAMPLES: The examples below are templates for formatting and style ONLY. Do not copy their specific words or the example list. You are strictly bound to the CURRENT WORD LIST above.
+<<<EXAMPLES>>>
+\n
+EXAMPLE strict limited list of known words = ['hi', 'friend', 'sorry', 'you', 'me', 'sad', 'like']
 
 user: hi friend
 response: {{
@@ -68,6 +70,8 @@ response: {{
   "content": "me like you friend",
   "logic": "do... you... like... me... like good... friend"
 }}
+\n
+<<<EXAMPLES>>>
       """
       examples_block = f'''⚠️ NOTE ON EXAMPLES: The examples below use a different historic word list. Do not limit yourself to the words in the examples. You must strictly use the current, live {known_words} list provided above.EXAMPLES: \n{self.get_brain_examples()}\n''' if use_examples else quick_examples
       
@@ -118,6 +122,8 @@ You must respond ONLY with a raw JSON object matching the schema below. Do not i
         # Double curly braces {{ }} are used here so this string can be safely used inside an f-string later.
         
         return """
+<<<EXAMPLES>>>
+\n
 user: hi friend
 response: {{
   "content": "hi friend",
@@ -419,8 +425,7 @@ response: {{
   "content": "bye friend",
   "logic": "bye... me no know"
 }}
-
-  
-  
+\n
+<<<EXAMPLES>>>
   """
   
