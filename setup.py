@@ -7,7 +7,7 @@ from helpers.helpers import Helpers
 def setup_mimic() -> Mimic:
     brain = MimicBrain()
     ears = Ears()
-    voice = Voice(brain=brain, language="english", perferred_tts="piper")
+    voice = Voice(brain=brain, language="english", perferred_tts="pyttsx3")
     agent = Helpers()
     
     mimic = Mimic(brain=brain, voicebox=voice, ears=ears, agent=agent)

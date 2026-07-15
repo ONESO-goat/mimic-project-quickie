@@ -6,7 +6,7 @@ from typing import Any
 from google import genai
             
 class Helpers:
-    def __init__(self, api_key:str|None=Config.gemini_api, ai_to_use:str="gemini") -> None:
+    def __init__(self, api_key:str|None=Config().gemini_api, ai_to_use:str="gemini") -> None:
         if ai_to_use not in ['gemini', 'ollama']:
             raise ValueError(f"'{ai_to_use}' is not a valid AI")
         
@@ -22,7 +22,7 @@ class Helpers:
             
         else:
             # Use Ollama
-            
+            print(f"API KEY MIGHT BE NONE: {api_key}")
             self.backend = 'ollama'
             self.ollama_model = 'qwen3:0.6b'
             

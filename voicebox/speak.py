@@ -8,8 +8,9 @@ class Voice:
     def __init__(self, brain:"MimicBrain", language:str="english", perferred_tts:str="piper") -> None:
         # We build pytts3 either way for a backup
         
-        if not perferred_tts or perferred_tts.lower().strip() not in ['piper', 'edge', 'ttsx']:
+        if not perferred_tts or perferred_tts.lower().strip() not in ['piper', 'edge', 'pyttsx', 'pyttsx3']:
             raise ValueError(f"'{perferred_tts}' is not a valid tts")
+        if perferred_tts == 'pyttsx3': perferred_tts = "pyttsx"
         
         self.brain = brain
         self.perferred_tts = perferred_tts.lower().strip()
@@ -87,7 +88,7 @@ class Voice:
             "piper": self._piper_say
         }
         if change_perferred_tts is not None and change_perferred_tts:
-            self.perferred_tts = change_perferred_tts
+            self.perferred_tts = change_perferred_tts.lower().strip()
             
         say_functions[self.perferred_tts](text=text)
         

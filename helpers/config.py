@@ -2,7 +2,7 @@ import os
 import dotenv
 
 
-dotenv.load_dotenv("agent_keys")
+dotenv.load_dotenv("agent_keys.env")
 class Config:
     brain_file = "brain/mimic.json"
     
@@ -18,8 +18,7 @@ class Config:
     
     
     
-    
-    
+
     # functions 
     def change_gemini_api(self, num:int):
         key = os.getenv(f"GEMINI_API_KEY{num}")
@@ -27,3 +26,7 @@ class Config:
             raise ValueError(f"There is no {num} gemini key")
 
         self.gemini_api = key
+        
+        
+if not Config().gemini_api:
+    raise ValueError(f"API KEY IS NONE")

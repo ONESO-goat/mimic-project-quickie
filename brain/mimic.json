@@ -1,37 +1,45 @@
-{   
+{
     "words": [
-        "hello", 
-        "world", 
+        "hello",
+        "world",
         "day",
         "hi",
         "happy",
         "sad",
-        "word", 
+        "word",
         "yes",
-         "no", 
-         "good", 
-         "bad", 
-         "ha",
-         "please", 
-         "thank", 
-         "it",
-         "sorry", 
-         "you",
-         "like", 
-         "me",
-        "friend"],
-
-    "phrase": 
-    [
-        "hello world", 
-        "no good", 
-        "thank you", 
-        "me no good", 
-        "yes world thank me", 
-        "please no bad", 
-        "sorry you", 
-        "me like you", 
-        "good me", 
+        "no",
+        "good",
+        "bad",
+        "ha",
+        "please",
+        "thank",
+        "it",
+        "sorry",
+        "you",
+        "like",
+        "me",
+        "friend",
+        "hey",
+        "how",
+        "you",
+        "doing",
+        "what's",
+        "up",
+        "how",
+        "you",
+        "doing"
+    ],
+    "phrase": [
+        "hello world",
+        "no good",
+        "thank you",
+        "me no good",
+        "yes world thank me",
+        "please no bad",
+        "sorry you",
+        "me like you",
+        "good me",
         "hi world",
         "me sad",
         "you friend",
@@ -40,19 +48,39 @@
         "no please",
         "ha ha ha",
         "you like me ha ha ha",
-        "you me friend me happy"
+        "you me friend me happy",
+        "hey how you doing",
+        "what's up how you doing"
     ],
-
     "sentence": [],
     "favorite_words": [],
-    
     "logic": {
         "word_associations": [
-            {"word": "happy", "type": "positive", "score": 1},
-            {"word": "friend", "type": "positive", "score": 1},
-            {"word": "sad", "type": "negative", "score": -1},
-            {"word": "bad", "type": "negative", "score": -1},
-            {"word": "ha", "type": "positive", "score": 1}
+            {
+                "word": "happy",
+                "type": "positive",
+                "score": 1
+            },
+            {
+                "word": "friend",
+                "type": "positive",
+                "score": 1
+            },
+            {
+                "word": "sad",
+                "type": "negative",
+                "score": -1
+            },
+            {
+                "word": "bad",
+                "type": "negative",
+                "score": -1
+            },
+            {
+                "word": "ha",
+                "type": "positive",
+                "score": 1
+            }
         ]
-}
+    }
 }

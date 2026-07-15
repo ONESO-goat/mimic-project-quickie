@@ -1,4 +1,5 @@
 agent_keys.env
 *.env
 *.wav
+*/__pycache__/
 *.onnx
