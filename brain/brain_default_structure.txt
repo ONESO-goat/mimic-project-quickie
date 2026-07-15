@@ -1,0 +1,58 @@
+{   
+    "words": [
+        "hello", 
+        "world", 
+        "day",
+        "hi",
+        "happy",
+        "sad",
+        "word", 
+        "yes",
+         "no", 
+         "good", 
+         "bad", 
+         "ha",
+         "please", 
+         "thank", 
+         "it",
+         "sorry", 
+         "you",
+         "like", 
+         "me",
+        "friend"],
+
+    "phrase": 
+    [
+        "hello world", 
+        "no good", 
+        "thank you", 
+        "me no good", 
+        "yes world thank me", 
+        "please no bad", 
+        "sorry you", 
+        "me like you", 
+        "good me", 
+        "hi world",
+        "me sad",
+        "you friend",
+        "me you friend",
+        "you happy",
+        "no please",
+        "ha ha ha",
+        "you like me ha ha ha",
+        "you me friend me happy"
+    ],
+
+    "sentence": [],
+    "favorite_words": [],
+    
+    "logic": {
+        "word_associations": [
+            {"word": "happy", "type": "positive", "score": 1},
+            {"word": "friend", "type": "positive", "score": 1},
+            {"word": "sad", "type": "negative", "score": -1},
+            {"word": "bad", "type": "negative", "score": -1},
+            {"word": "ha", "type": "positive", "score": 1}
+        ]
+}
+}

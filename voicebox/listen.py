@@ -1,5 +1,5 @@
 from faster_whisper import WhisperModel
-import ollama
+import random
 import speech_recognition as sr
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -14,7 +14,39 @@ class Ears:
 
         self.recognizer = sr.Recognizer()
         assert self.recognizer is not None, "Reconizer wasn't configured"
+    
+    def wait_for_wake_word(self, wake_word: str = "mimic") -> bool|str:
+        """
+        Loops indefinitely, listening for a short snippet of audio.
+        Returns True when the wake word is detected, returns 'random' for the mimic to say something random
+        """
+        print(f"Passive listening... Say '{wake_word}' to activate.")
         
+        while True:
+            num = random.randint(1,25)
+            if num == 10:
+                return "random"
+            
+            with sr.Microphone() as source:
+                
+                self.recognizer.adjust_for_ambient_noise(source, duration=0.5)
+                
+                try:
+
+                    audio_stream = self.recognizer.listen(source, timeout=None, phrase_time_limit=3)
+                    
+
+                    text_result = self.recognizer.recognize_google(audio_stream).lower()
+                    
+                    if wake_word in text_result:
+                        print(f" Wake word '{wake_word}' detected!")
+                        return True
+                        
+                except sr.UnknownValueError:
+                    continue
+                except sr.RequestError as e:
+                    print(f"API service error in passive loop: {e}")
+                    continue
         
     def sr_listen(self, silence_timeout:float=1.5, energy_threshold:int=400):  
 

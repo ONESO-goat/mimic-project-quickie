@@ -1,14 +1,17 @@
 import pyttsx3
 import subprocess
 from pathlib import Path
-
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from brain.mini_brain import MimicBrain
 class Voice:
-    def __init__(self, language:str="english", perferred_tts:str="piper") -> None:
+    def __init__(self, brain:"MimicBrain", language:str="english", perferred_tts:str="piper") -> None:
         # We build pytts3 either way for a backup
         
         if not perferred_tts or perferred_tts.lower().strip() not in ['piper', 'edge', 'ttsx']:
             raise ValueError(f"'{perferred_tts}' is not a valid tts")
         
+        self.brain = brain
         self.perferred_tts = perferred_tts.lower().strip()
         self.engine = pyttsx3.init()
         
@@ -30,6 +33,7 @@ class Voice:
         self.engine.setProperty('volume', 0.7)
         self.engine.setProperty('rate', 150)
         self.set_language(language=language)
+        
         print("Voice configuration success ✅")
         
     def set_language(self, language: str):
@@ -87,6 +91,14 @@ class Voice:
             
         say_functions[self.perferred_tts](text=text)
         
+    def say_something_random(self):
+        import random
+        
+        known_phrases = self.brain.get_brain()[random.choice(['words', 'phrase'])]
+        phrase = random.choice(known_phrases)
+        self.say(phrase)
+        self.brain.find_favorite_word(phrase.split())
+          
     def _edge_tts_say(self, text:str):
         import asyncio
         import edge_tts

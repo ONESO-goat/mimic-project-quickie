@@ -47,7 +47,7 @@ class MimicBrain:
         
         self.brain = self.get_brain()
             
-    def find_favorite_word(self)->tuple[bool, str]:
+    def find_favorite_word(self, words_heard:list[str])->tuple[bool, str]:
         """
         Returns:
             tuple[bool, str]: Checks if a word was added, string is the word that was added to favorites
@@ -55,8 +55,8 @@ class MimicBrain:
         chance = random.randint(1, 100)
         if len(self.brain['favorite_words']) > 3 and chance == 67:
 
-            if self.brain.get('words'): 
-                word = random.choice(self.brain['words'])
+            if words_heard: 
+                word = random.choice(words_heard)
                 self.favorite_word = word
                 if word not in self.brain['favorite_words']:
                     self.brain['favorite_words'].append(word)
@@ -65,9 +65,10 @@ class MimicBrain:
                 self.save_to_brain(self.brain)
             return True, word
         else:
-            if 1 / 171547 == 67: # chances of having a favorite word
-                if self.brain.get('words'): 
-                    word = random.choice(self.brain['words'])
+            chance = random.randint(1, 171547)
+            if chance == 67: # chances of having a favorite word
+                if words_heard: 
+                    word = random.choice(words_heard)
                     self.favorite_word = word
                     if word not in self.brain['favorite_words']:
                         self.brain['favorite_words'].append(word)

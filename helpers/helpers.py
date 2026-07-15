@@ -6,14 +6,17 @@ from typing import Any
 from google import genai
             
 class Helpers:
-    def __init__(self, ai_to_use:str, api_key:str|None=Config.gemini_api) -> None:
-  
+    def __init__(self, api_key:str|None=Config.gemini_api, ai_to_use:str="gemini") -> None:
+        if ai_to_use not in ['gemini', 'ollama']:
+            raise ValueError(f"'{ai_to_use}' is not a valid AI")
+        
+        self.backend = ai_to_use
         if self.backend == 'gemini' and api_key:
             # Use Gemini
             
             
             self.client = genai.Client(api_key=api_key)
-            self.llm = 'gemini-2.5-flash'
+            self.llm = Config.gemini_model_id
             
             print(f"✓ Gemini Backend Initialized: {self.client}")
             
@@ -36,7 +39,15 @@ class Helpers:
         return self._genrate(text=text, system_prompt=Prompts().validate_text, return_json=True)
     
     def _genrate(self, text:str, system_prompt:str, return_json:bool=False, _use_ollama:bool=False):
-        prompt = Prompts().validate_text
+        """
+        
+        Returns:
+            dict: {{
+                "content": "AI response to the user here (strictly following the vocabulary and mimic rules)",
+                "logic": "AI logical guess on what words were heard and what they could mean (using ONLY words from the known word list to explain)"
+                }}
+        """
+
         m = [
             {"role": "sytstem", "content": system_prompt},
             {"role": "user", "content": f"<<<TEXT>>>\n{text}\n<<<TEXT>>>"}
@@ -53,21 +64,24 @@ class Helpers:
              
                 response = self.client.models.generate_content(
                     model=self.llm, 
-                    contents=prompt, # Or pass the whole history
+                    contents=m, # Or pass the whole history
                     config=types.GenerateContentConfig( 
                         #system_instruction=p, # Best way for Gemini
-                        response_mime_type="application/json"
+                        response_mime_type="application/json" if return_json else None
                     )
                 )
                 
                 
-                return response.text or '[]'
+                return json.loads(response.text or '[]')
             except Exception as e:
                 print(f"[engine.generate gemini] ⚠️ Gemini error: {e}")
                 if "503" in str(e):
                     print("⚠️ Gemini service unavailable, switching to ollama, please hold...")
                     self.backend = 'ollama'
-                    return self._genrate(text=text, system_prompt=system_prompt, return_json=return_json, _use_ollama=True)  # Retry with Ollama
+                    return self._genrate(text=text, 
+                                         system_prompt=system_prompt, 
+                                         return_json=return_json, 
+                                         _use_ollama=True)  # Retry with Ollama
                 return '[]'
         
         else:  # Ollama
@@ -76,9 +90,10 @@ class Helpers:
                 response = ollama.chat(
                     model=self.ollama_model,
                     messages=m,
+                    format="json" if return_json else None,
                     options={'temperature': 0.2}
                 )
-                return response['message']['content']
+                return json.loads(response['message']['content'])
                 
             except Exception as e:
                 print(f"⚠️ [engine.generate] Ollama error: {e}")
