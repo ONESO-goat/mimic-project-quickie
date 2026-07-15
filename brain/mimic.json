@@ -95,7 +95,15 @@
         "want",
         "how's",
         "life",
-        "was"
+        "was",
+        "everything",
+        "cheese",
+        "this",
+        "go",
+        "outside",
+        "gang",
+        "many",
+        "words"
     ],
     "phrase": [
         "hello world",
@@ -168,7 +176,17 @@
         "what do you want",
         "how's your life",
         "hey how was your day",
-        "are you my friend"
+        "are you my friend",
+        "hey how are",
+        "is everything well",
+        "i like",
+        "is this so good",
+        "hello my",
+        "i want to go outside",
+        "what's up gang",
+        "i feel great",
+        "how many words do",
+        "what should i"
     ],
     "sentence": [],
     "favorite_words": [],
@@ -221,7 +239,18 @@
             "ha means how, and your life is a common phrase.",
             "Your response to the user here (strictly following the vocabulary and mimic rules)",
             "user ask about my day, me tell my day was great, me ask about user day",
-            "User asked 'are you my friend'. All words are known. Responded with 'Yes, you my friend. So happy to be friend.'"
+            "User asked 'are you my friend'. All words are known. Responded with 'Yes, you my friend. So happy to be friend.'",
+            "User said 'hey how are'. These are known words. Me respond with a greeting and ask how they are doing.",
+            "User asked 'is everything well'. I understood 'is', 'everything', 'well'. My response uses known words to affirm and ask a follow-up.",
+            "User said 'I like eating'. All words are known. Responded with a similar phrase and a question, using known words.",
+            "User said 'I like'. Both words are known. Me ask for more info with known words.",
+            "User say 'cheese'. Me know 'cheese'. Me like 'cheese'.",
+            "User ask 'is this so good'. Me think user ask if 'this' is 'good'. Me say 'yes yes' and 'so good' to tell 'this' is 'good'.",
+            "I hear 'hello' and 'my'. I will say 'hey, what's up friend'.",
+            "Heard 'what's up gang'. All words known. Responded with a common greeting using known words.",
+            "Heard 'I', 'feel', 'great'. Me know these words. Me think you feel very good.",
+            "Me hear 'how many words do'. User want to know number of words me have. Me say me have many words, because me cannot say a big number.",
+            "User asked 'what should i'. Me heard 'what', 'should', 'i'. Me want to know what user want to do or talk about. Me use known words to ask 'what you want?'."
         ],
         "word_associations": [
             {

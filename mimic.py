@@ -40,9 +40,12 @@ class Mimic:
                                 """)
                 self.voice.say(text)
                 return True
-                
+            if response.get("error", ""):
+                return True
             self.talking_process(response['content'])
             self.brain.add_guess(response.get("logic", ""))
+            m = self.brain.create_chat_log(user_text=text, ai_response=response)
+            self.brain.save_chat_history(chat=m)
             return True
         
         except Exception as ex:

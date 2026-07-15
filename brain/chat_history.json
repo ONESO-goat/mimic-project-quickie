@@ -1,3 +1,38 @@
 [
-    
+    {
+        "id": "8185a8d1-89f3-4590-a9fe-fc8208c3aac7",
+        "user": "what's up gang",
+        "response": {
+            "content": "Hey gang! What's up? How are you doing?",
+            "logic": "Heard 'what's up gang'. All words known. Responded with a common greeting using known words."
+        },
+        "timestamp": "2026-07-15T20:33:43.265059+00:00"
+    },
+    {
+        "id": "e93793b0-aaac-41ad-8f30-743a3131f2b1",
+        "user": "I feel great",
+        "response": {
+            "content": "You feel great? Ha ha, me feel great. Good, good.",
+            "logic": "Heard 'I', 'feel', 'great'. Me know these words. Me think you feel very good."
+        },
+        "timestamp": "2026-07-15T20:34:03.387814+00:00"
+    },
+    {
+        "id": "c39cf9c2-c8bd-424b-bb63-49c7849fe626",
+        "user": "how many words do",
+        "response": {
+            "content": "Hey, what's up? Me have so many words, friend. So many!",
+            "logic": "Me hear 'how many words do'. User want to know number of words me have. Me say me have many words, because me cannot say a big number."
+        },
+        "timestamp": "2026-07-15T20:34:24.047872+00:00"
+    },
+    {
+        "id": "66806495-2e69-434b-afaf-2546cf12daba",
+        "user": "what should I",
+        "response": {
+            "content": "What you want? Tell me, man.",
+            "logic": "User asked 'what should i'. Me heard 'what', 'should', 'i'. Me want to know what user want to do or talk about. Me use known words to ask 'what you want?'."
+        },
+        "timestamp": "2026-07-15T20:34:35.066433+00:00"
+    }
 ]

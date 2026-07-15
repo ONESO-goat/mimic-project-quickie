@@ -55,7 +55,11 @@ class Helpers:
         ]
         
         
-        
+        err = {
+            "content": text,
+            "logic": "",
+            "error": True
+        }
         if self.backend == 'gemini' and not _use_ollama:
             try:
                 from google.genai import types
@@ -83,17 +87,16 @@ class Helpers:
                 if "429" in str(e):
                     print(" ⚠️⚠️⚠️ RAN OUT OF GEMINI TOKENS")
                     self.backend = "ollama"
-                    return {
-                        "content": text,
-                        "logic": ""
-                    }
+                    return err
+                
                 if "503" in str(e):
                     print("⚠️ Gemini service unavailable, switching to ollama, please hold...")
-                    self.backend = 'ollama'
-                    return self._genrate(text=text, 
-                                         system_prompt=system_prompt, 
-                                         return_json=return_json, 
-                                         _use_ollama=True)  # Retry with Ollama
+                    # self.backend = 'ollama'
+                    # return self._genrate(text=text, 
+                    #                      system_prompt=system_prompt, 
+                    #                      return_json=return_json, 
+                    #                      _use_ollama=True)  # Retry with Ollama
+                    return err
                 return '[]'
         
         else:  # Ollama

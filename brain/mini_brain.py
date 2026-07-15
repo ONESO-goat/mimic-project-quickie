@@ -1,6 +1,7 @@
 import json
 from helpers.config import Config
 import copy
+from datetime import datetime, timezone
 import random
 
 class MimicBrain:
@@ -104,9 +105,20 @@ class MimicBrain:
             
         return False, ""
     
-    def save_chat_history(self, chat):
-        with open(Config.chat_history_file, 'w') as f:
-            json.dump(chat, f, indent=4)
+    def create_chat_log(self, user_text:str, ai_response:dict):
+        import uuid
+        return {
+            "id": str(uuid.uuid4()),
+            "user": user_text,
+            "response": ai_response,
+            "timestamp": datetime.now(tz=timezone.utc).isoformat()
+        }
         
-        self.chat_history = self.get_brain()   
+    def save_chat_history(self, chat):
+        history = self.get_chat_history()
+        history.append(chat)
+        with open(Config.chat_history_file, 'w') as f:
+            json.dump(history, f, indent=4)
+        
+        self.chat_history = self.get_chat_history()   
         
