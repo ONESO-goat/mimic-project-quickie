@@ -80,6 +80,13 @@ class Helpers:
                 return json.loads(response.text or '[]')
             except Exception as e:
                 print(f"[engine.generate gemini] ⚠️ Gemini error: {e}")
+                if "429" in str(e):
+                    print(" ⚠️⚠️⚠️ RAN OUT OF GEMINI TOKENS")
+                    self.backend = "ollama"
+                    return {
+                        "content": text,
+                        "logic": ""
+                    }
                 if "503" in str(e):
                     print("⚠️ Gemini service unavailable, switching to ollama, please hold...")
                     self.backend = 'ollama'

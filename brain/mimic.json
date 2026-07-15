@@ -42,7 +42,27 @@
         "should",
         "man",
         "mind",
-        "right"
+        "right",
+        "10",
+        "minute",
+        "how",
+        "are",
+        "doing",
+        "well",
+        "sounding",
+        "meme",
+        "amazing",
+        "am",
+        "very",
+        "proud",
+        "of",
+        "do",
+        "have",
+        "beautiful",
+        "voice",
+        "you're",
+        "running",
+        "quizzes"
     ],
     "phrase": [
         "hello world",
@@ -71,13 +91,33 @@
         "i like eating",
         "what is something i should",
         "hey man what's up",
-        "what's on your mind right"
+        "what's on your mind right",
+        "10 minute how are you",
+        "you doing well",
+        "you sounding great meme amazing sounding amazing",
+        "i am very proud of you",
+        "do you have",
+        "you have a beautiful",
+        "your voice is beautiful",
+        "how are you doing",
+        "you're running",
+        "you are very",
+        "you are you are",
+        "how is"
     ],
     "sentence": [],
     "favorite_words": [],
     "logic": {
         "guesses": [
-            "hey... man... what's... up... me no know"
+            "hey... man... what's... up... me no know",
+            "User ask 'how are you'. Me tell 'i'm good'.",
+            "i hear 'you doing well'. i know all words. no new word to guess.",
+            "Me hear 'you sounding great meme amazing sounding amazing'. All words me know. Me understand you say good things about me. Me thank you, friend. You amazing.",
+            "User said good word 'proud'. Me understand 'proud' is a good, happy word. Me feel happy and say 'proud' back to user, friend.",
+            "User said 'do you have'. Me know all words. It like asking what me have. Me ask back what.",
+            "All words heard are known. The user's sentence is incomplete, so I am asking for more information using my known words.",
+            "User ask 'how are you doing'. Me respond 'I am doing well'.",
+            "User said 'you're running'. Me know all words. Me confirm it good."
         ],
         "word_associations": [
             {
