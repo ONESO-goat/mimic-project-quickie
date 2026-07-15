@@ -4,9 +4,8 @@ if TYPE_CHECKING:
     from brain.mini_brain import MimicBrain
 
 class Eyes:
-    def __init__(self, brain:"MimicBrain"):
-        self.brain = brain
-        
+    def __init__(self):
+       
         self.cap = cv2.VideoCapture(0)
 
         # Check if the webcam opened correctly
@@ -34,3 +33,9 @@ class Eyes:
 
         self.cap.release()
         cv2.destroyAllWindows()
+    
+    def detect_eye_contact(self):
+        pass
+        
+if __name__ in "__main__":
+    eyes = Eyes()

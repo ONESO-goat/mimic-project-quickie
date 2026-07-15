@@ -110,7 +110,6 @@ CURRENT WORD LIST: {known_words}
 OUTPUT FORMAT:
 You must respond ONLY with a raw JSON object matching the schema below. Do not include any markdown formatting like ```json or any extra conversational text outside the JSON.
 
-{examples_block}
 
 {{
   "content": "Your response to the user here (strictly following the vocabulary and mimic rules)",

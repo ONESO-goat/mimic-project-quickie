@@ -6,9 +6,17 @@ import random
 class MimicBrain:
     def __init__(self):
         self.brain = self.get_brain()
+        self.chat_history = self.get_chat_history()
         self.recent_memory = []
         self.favorite_word = ""
     
+    def get_chat_history(self):
+        try:
+            with open(Config.chat_history_file, 'r') as f:
+                return json.load(f)
+        except json.JSONDecodeError as ex:
+            raise ValueError(f"Error occured during json process: {ex}")
+        
     def get_brain(self)->dict:
         try:
             with open(Config.brain_file, 'r') as f:
@@ -95,5 +103,10 @@ class MimicBrain:
                     return True, word
             
         return False, ""
-            
+    
+    def save_chat_history(self, chat):
+        with open(Config.chat_history_file, 'w') as f:
+            json.dump(chat, f, indent=4)
+        
+        self.chat_history = self.get_brain()   
         
