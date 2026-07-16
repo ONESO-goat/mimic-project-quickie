@@ -57,6 +57,10 @@ class Ears:
                 except sr.RequestError as e:
                     print(f"API service error in passive loop: {e}")
                     continue
+                
+                except Exception as ex:
+                    print(f"Possible error?: \n\t\u2022 {ex}")
+                    continue
         
     # def sr_listen(self, silence_timeout: float = 1.2, dynamic_energy: bool = True):  
     #     with sr.Microphone() as source:
