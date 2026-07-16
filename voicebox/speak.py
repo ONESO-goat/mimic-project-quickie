@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from brain.mini_brain import MimicBrain
+    
 class Voice:
     def __init__(self, brain:"MimicBrain", language:str="english", perferred_tts:str="piper") -> None:
         # We build pytts3 either way for a backup

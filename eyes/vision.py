@@ -4,6 +4,12 @@ if TYPE_CHECKING:
     from brain.mini_brain import MimicBrain
 
 class Eyes:
+    """
+    
+    For now, if I have the time and resources just add a eye contact detector.
+    If the user looks into the camera, the "mimic" wakes up and starts talkings
+    
+    """
     def __init__(self):
        
         self.cap = cv2.VideoCapture(0)

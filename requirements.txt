@@ -1,0 +1,15 @@
+pyttsx3
+speech_recognition
+faster_whisper
+python-dotenv
+ollama
+google
+numpy
+aplay
+espeak
+pypiwin32
+
+edge-tss
+piper-tts
+# python3 -m piper.download_voices en_US-lessac-medium
+# echo "Welcome to local text to speech." | python3 -m piper --model en_US-lessac-medium.onnx --output-file test.wav

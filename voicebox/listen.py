@@ -4,9 +4,10 @@ import speech_recognition as sr
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from CyberLife.BrainAnomaly.BrainAnomaly import Brain
+    
 
 class Ears:
-    def __init__(self, engine=None, use_whisper:bool=False):
+    def __init__(self, use_whisper:bool=False):
         self.wav_file_path = "voicebox/audio/user_audio.wav"
         self.whisper_model = None
         if use_whisper:
