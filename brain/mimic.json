@@ -116,7 +116,8 @@
         "she",
         "will",
         "get",
-        "fat"
+        "fat",
+        "bed"
     ],
     "phrase": [
         "hello world",
@@ -203,7 +204,8 @@
         "hey how are you doing",
         "i'm eating hot dogs right now",
         "ashley ate three hot dogs",
-        "that's a lot of hot dogs maybe she will get fat"
+        "that's a lot of hot dogs maybe she will get fat",
+        "i'm going to go to bed what about you"
     ],
     "sentence": [],
     "favorite_words": [],
@@ -271,7 +273,8 @@
             "User say 'how are you doing'. Me think user want know if me feel good or bad.",
             "Me hear 'eating hot dogs right now'. You are eating good good food this moment. All words are known.",
             "The words 'Ashley', 'ate', 'three', 'hot', 'dogs' were all known. I used known words to express observation and ask for thoughts on the quantity, keeping it like teenage talk with repetition.",
-            "User said words me know. No new word. Me understand 'that's a lot of hot dogs maybe she will get fat'."
+            "User said words me know. No new word. Me understand 'that's a lot of hot dogs maybe she will get fat'.",
+            "No new words heard. All words are in my known list."
         ],
         "word_associations": [
             {

@@ -24,9 +24,7 @@ class Ears:
         print(f"Passive listening... Say '{wake_word}' to activate.")
         
         while True:
-            num = random.randint(1,5)
-            if num == 5:
-                return "random"
+           
             
             with sr.Microphone() as source:
                 
@@ -44,8 +42,17 @@ class Ears:
                     if wake_word in text_result:
                         print(f"Wake word '{wake_word}' detected!")
                         return True
+                    
+                    num = random.randint(1,5)
+                    if num == 2:
+                        return "random"
+                    
+                    continue
                         
                 except sr.UnknownValueError:
+                    num = random.randint(1,5)
+                    if num == 2:
+                        return "random"
                     continue
                 except sr.RequestError as e:
                     print(f"API service error in passive loop: {e}")

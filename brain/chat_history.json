@@ -70,5 +70,14 @@
             "logic": "User said words me know. No new word. Me understand 'that's a lot of hot dogs maybe she will get fat'."
         },
         "timestamp": "2026-07-16T03:23:06.420718+00:00"
+    },
+    {
+        "id": "94f89ee6-3c48-45d8-ac01-69df7bba6ba7",
+        "user": "I'm going to go to bed what about you",
+        "response": {
+            "content": "You going to go to bed? Me no go to bed now. Ha! You have a good day, friend.",
+            "logic": "No new words heard. All words are in my known list."
+        },
+        "timestamp": "2026-07-16T04:34:46.187432+00:00"
     }
 ]
