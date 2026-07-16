@@ -22,45 +22,47 @@ class Ears:
         Returns True when the wake word is detected, returns 'random' for the mimic to say something random
         """
         print(f"Passive listening... Say '{wake_word}' to activate.")
-        
-        while True:
-           
-            
-            with sr.Microphone() as source:
-                
+        try:
+            with sr.Microphone() as source:      
                 self.recognizer.adjust_for_ambient_noise(source, duration=0.5)
+                    
+                while True:
                 
-                try:
+                        try:
 
-                    audio_stream = self.recognizer.listen(source, timeout=None, phrase_time_limit=3)
-                    
-
-                    text_result = self.recognizer.recognize_google(audio_stream).lower()
-                    if "quit" in text_result:
-                        exit()
+                            audio_stream = self.recognizer.listen(source, timeout=None, phrase_time_limit=3)
+                            text_result = self.recognizer.recognize_google(audio_stream).lower()
+                            
+                            if "quit" in text_result:
+                                exit()
+                                
+                            if wake_word in text_result:
+                                print(f"Wake word '{wake_word}' detected!")
+                                return True
                         
-                    if wake_word in text_result:
-                        print(f"Wake word '{wake_word}' detected!")
-                        return True
-                    
-                    num = random.randint(1,5)
-                    if num == 2:
-                        return "random"
-                    
-                    continue
+                        except sr.WaitTimeoutError:
+                            # No speech in the last 5s — normal, just loop back
+                            if random.randint(1, 7) == 7:
+                                return "random"
+                            continue
+                            
+                                
+                        except sr.UnknownValueError:
+                            num = random.randint(1,5)
+                            if num == 2:
+                                return "random"
+                            continue
+                        except sr.RequestError as e:
+                            print(f"API service error in passive loop: {e}")
+                            continue
                         
-                except sr.UnknownValueError:
-                    num = random.randint(1,5)
-                    if num == 2:
-                        return "random"
-                    continue
-                except sr.RequestError as e:
-                    print(f"API service error in passive loop: {e}")
-                    continue
-                
-                except Exception as ex:
-                    print(f"Possible error?: \n\t\u2022 {ex}")
-                    continue
+                        except Exception as ex:
+                            print(f"Possible error?: \n\t\u2022 {ex}")
+                            continue
+                        
+        except KeyboardInterrupt:
+            print("Passive listening interrupted by user.")
+            raise
         
     # def sr_listen(self, silence_timeout: float = 1.2, dynamic_energy: bool = True):  
     #     with sr.Microphone() as source:

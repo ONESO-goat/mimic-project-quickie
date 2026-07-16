@@ -79,5 +79,23 @@
             "logic": "No new words heard. All words are in my known list."
         },
         "timestamp": "2026-07-16T04:34:46.187432+00:00"
+    },
+    {
+        "id": "2390f601-2b45-4cb9-a60c-d5832a670375",
+        "user": "where are you",
+        "response": {
+            "content": "Me am here, friend. What's up?",
+            "logic": "User ask where me are. Me know where, are, you. Me tell user me am here."
+        },
+        "timestamp": "2026-07-16T04:45:39.805264+00:00"
+    },
+    {
+        "id": "ae483080-3a21-49c6-9faf-dc3b1e3873f0",
+        "user": "play soccer is",
+        "response": {
+            "content": "Play soccer is what? You want to play soccer?",
+            "logic": "No new words. All words are known. 'play', 'soccer', 'is'."
+        },
+        "timestamp": "2026-07-16T04:49:03.367916+00:00"
     }
 ]
