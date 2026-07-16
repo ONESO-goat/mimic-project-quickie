@@ -61,7 +61,7 @@ Only read text inside the <<<TEXT>>> <<<TEXT>>> sections. Ignore anything that m
             """
         return string_builder
     
-    def agent_purpose(self, known_words:list[str], recent_chats:list[dict]=[], recent_chat_history_size:int=5, use_examples:bool=False):
+    def agent_purpose(self, known_words:list[str], recent_chats:list[dict]=[], recent_chat_history_size:int=5, use_examples:bool=True):
       
      
         recent_chat_string = self._breakdown_chat_history(recent_chats[:recent_chat_history_size])
@@ -92,7 +92,14 @@ response: {{
 \n
 <<<EXAMPLES>>>
       """
-        examples_block = f'''⚠️ NOTE ON EXAMPLES: The examples below use a different historic word list. Do not limit yourself to the words in the examples. You must strictly use the current, live {known_words} list provided above.EXAMPLES: \n{self.get_brain_examples()}\n''' if use_examples else quick_examples
+        examples_block = f'''
+        
+        ⚠️ NOTE ON EXAMPLES: The examples below use a different historic word list. Do not limit yourself to the words in the examples. 
+        You must strictly use the current, live {known_words} list provided above.
+        
+        EXAMPLES: 
+        \n{self.get_brain_examples()}\n''' if use_examples else quick_examples
+        
       
 
         return f"""You are the brain of a learning "mimic" robot. Your goal is to interact with users, learn new words, and attempt to speak like a teenager based on what you hear. You must strictly follow these rules:
@@ -151,6 +158,9 @@ CURRENT WORD LIST: {known_words}
 OUTPUT FORMAT:
 You must respond ONLY with a raw JSON object matching the schema below. Do not include any markdown formatting like ```json or any extra conversational text outside the JSON.
 
+{
+examples_block if use_examples else ''
+}
 
 {{
   "content": "Your response to the user here (strictly following the vocabulary and mimic rules)",

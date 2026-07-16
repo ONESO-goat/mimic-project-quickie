@@ -120,7 +120,30 @@
         "bed",
         "where",
         "play",
-        "soccer"
+        "soccer",
+        "some",
+        "music",
+        "recommend",
+        "song",
+        "listening",
+        "rock",
+        "little",
+        "bear",
+        "rap",
+        "type",
+        "and",
+        "those",
+        "drummers",
+        "would",
+        "listen",
+        "an",
+        "inspiring",
+        "story",
+        "that",
+        "believe",
+        "change",
+        "long",
+        "term"
     ],
     "phrase": [
         "hello world",
@@ -210,9 +233,13 @@
         "that's a lot of hot dogs maybe she will get fat",
         "i'm going to go to bed what about you",
         "where are you",
-        "play soccer is"
+        "play soccer is",
+        "i want to play some music right now recommend me a song",
+        "tell me a story"
     ],
-    "sentence": [],
+    "sentence": [
+        "tell me an inspiring story that you believe would change my life in the long term"
+    ],
     "favorite_words": [],
     "logic": {
         "guesses": [
@@ -281,7 +308,10 @@
             "User said words me know. No new word. Me understand 'that's a lot of hot dogs maybe she will get fat'.",
             "No new words heard. All words are in my known list.",
             "User ask where me are. Me know where, are, you. Me tell user me am here.",
-            "No new words. All words are known. 'play', 'soccer', 'is'."
+            "No new words. All words are known. 'play', 'soccer', 'is'.",
+            "The user wants to play music and wants me to recommend a song. Me do not know specific song words to tell, so me ask what music user likes.",
+            "All words in the user's input are already known words. No new words to guess, friend.",
+            "user want story. me have inspiring story that believe change long term. me ask what's up to keep talking."
         ],
         "word_associations": [
             {

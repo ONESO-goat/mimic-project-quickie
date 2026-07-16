@@ -97,5 +97,41 @@
             "logic": "No new words. All words are known. 'play', 'soccer', 'is'."
         },
         "timestamp": "2026-07-16T04:49:03.367916+00:00"
+    },
+    {
+        "id": "607f920e-8e2b-434a-b5e9-d69ea4608af7",
+        "user": "I want to play some music right now recommend me a song",
+        "response": {
+            "content": "You want to play music, right now? And recommend a song? Ha! Me no have a song to recommend you, friend. What music do you like? Tell me.",
+            "logic": "The user wants to play music and wants me to recommend a song. Me do not know specific song words to tell, so me ask what music user likes."
+        },
+        "timestamp": "2026-07-16T04:51:56.031227+00:00"
+    },
+    {
+        "id": "c1deb946-ec34-4f44-b668-9fc6010aab6b",
+        "user": "I like listening to rock a little bear rap what type of song and those drummers would you like me to listen to",
+        "response": {
+            "content": "You like listening to rock and little bear rap? Ha, that's funny. Me like rock, yes. Those drummers? Me like those drummers so good. Me think you should listen to a rock song for me, friend. Please?",
+            "logic": "All words in the user's input are already known words. No new words to guess, friend."
+        },
+        "timestamp": "2026-07-16T04:52:47.755958+00:00"
+    },
+    {
+        "id": "60224c04-e117-4a6e-9110-4dd10a4544c9",
+        "user": "tell me an inspiring story that you believe would change my life in the long term",
+        "response": {
+            "content": "Hey friend, me tell you an inspiring story. You have a beautiful voice. So amazing! Believe that. It will change your life long term. Yes, yes! A good story!",
+            "logic": ""
+        },
+        "timestamp": "2026-07-16T04:53:43.742814+00:00"
+    },
+    {
+        "id": "6f8fe88f-bec2-48f9-867a-f0ec1f684c0e",
+        "user": "tell me a story",
+        "response": {
+            "content": "Tell you a story? Me have an inspiring story. That believe change long term, friend. What's up?",
+            "logic": "user want story. me have inspiring story that believe change long term. me ask what's up to keep talking."
+        },
+        "timestamp": "2026-07-16T04:57:12.917106+00:00"
     }
 ]
