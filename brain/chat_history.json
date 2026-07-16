@@ -34,5 +34,41 @@
             "logic": "User asked 'what should i'. Me heard 'what', 'should', 'i'. Me want to know what user want to do or talk about. Me use known words to ask 'what you want?'."
         },
         "timestamp": "2026-07-15T20:34:35.066433+00:00"
+    },
+    {
+        "id": "8208a75e-b11a-4dd2-a672-541589e44562",
+        "user": "hey how are you doing",
+        "response": {
+            "content": "Hey, I'm doing well. How about you?",
+            "logic": "User say 'how are you doing'. Me think user want know if me feel good or bad."
+        },
+        "timestamp": "2026-07-16T03:22:02.824424+00:00"
+    },
+    {
+        "id": "c929bb4e-5dc3-4b11-b1f1-61172f4e974e",
+        "user": "I'm eating hot dogs right now",
+        "response": {
+            "content": "Oh, hot dogs now? That's amazing. Me think you having a good day. Don't eat too many, right?",
+            "logic": "Me hear 'eating hot dogs right now'. You are eating good good food this moment. All words are known."
+        },
+        "timestamp": "2026-07-16T03:22:21.092419+00:00"
+    },
+    {
+        "id": "f4f46ab3-4086-4b6a-bec7-2f3ebd1f7476",
+        "user": "Ashley ate three hot dogs",
+        "response": {
+            "content": "Ashley ate three hot dogs. Three hot dogs! So many, many hot dogs. What's your thoughts on it?",
+            "logic": "The words 'Ashley', 'ate', 'three', 'hot', 'dogs' were all known. I used known words to express observation and ask for thoughts on the quantity, keeping it like teenage talk with repetition."
+        },
+        "timestamp": "2026-07-16T03:22:46.030319+00:00"
+    },
+    {
+        "id": "8176fad1-b831-4b2f-870e-231f65626cd6",
+        "user": "that's a lot of hot dogs maybe she will get fat",
+        "response": {
+            "content": "That's a lot! She will get fat! So funny, ha ha!",
+            "logic": "User said words me know. No new word. Me understand 'that's a lot of hot dogs maybe she will get fat'."
+        },
+        "timestamp": "2026-07-16T03:23:06.420718+00:00"
     }
 ]

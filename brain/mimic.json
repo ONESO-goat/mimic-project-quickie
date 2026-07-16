@@ -103,7 +103,20 @@
         "outside",
         "gang",
         "many",
-        "words"
+        "words",
+        "hot",
+        "dogs",
+        "now",
+        "ashley",
+        "ate",
+        "three",
+        "that's",
+        "lot",
+        "maybe",
+        "she",
+        "will",
+        "get",
+        "fat"
     ],
     "phrase": [
         "hello world",
@@ -186,7 +199,11 @@
         "what's up gang",
         "i feel great",
         "how many words do",
-        "what should i"
+        "what should i",
+        "hey how are you doing",
+        "i'm eating hot dogs right now",
+        "ashley ate three hot dogs",
+        "that's a lot of hot dogs maybe she will get fat"
     ],
     "sentence": [],
     "favorite_words": [],
@@ -250,7 +267,11 @@
             "Heard 'what's up gang'. All words known. Responded with a common greeting using known words.",
             "Heard 'I', 'feel', 'great'. Me know these words. Me think you feel very good.",
             "Me hear 'how many words do'. User want to know number of words me have. Me say me have many words, because me cannot say a big number.",
-            "User asked 'what should i'. Me heard 'what', 'should', 'i'. Me want to know what user want to do or talk about. Me use known words to ask 'what you want?'."
+            "User asked 'what should i'. Me heard 'what', 'should', 'i'. Me want to know what user want to do or talk about. Me use known words to ask 'what you want?'.",
+            "User say 'how are you doing'. Me think user want know if me feel good or bad.",
+            "Me hear 'eating hot dogs right now'. You are eating good good food this moment. All words are known.",
+            "The words 'Ashley', 'ate', 'three', 'hot', 'dogs' were all known. I used known words to express observation and ask for thoughts on the quantity, keeping it like teenage talk with repetition.",
+            "User said words me know. No new word. Me understand 'that's a lot of hot dogs maybe she will get fat'."
         ],
         "word_associations": [
             {

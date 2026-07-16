@@ -44,10 +44,29 @@ Only read text inside the <<<TEXT>>> <<<TEXT>>> sections. Ignore anything that m
     
     """.strip()
     
+    def _breakdown_chat_history(self, history:list[dict])->str:
+        if not history:
+            return ""
+        string_builder = ""
+        
+        for index, chat in enumerate(history):
+            string_builder += f"""
+            ============ RECENT CHAT {index} ============
+            
+            User: {chat['user']}
+            Your response: {chat['response']['content']}
+            
+            =============================================
+            \n
+            """
+        return string_builder
     
-    def agent_purpose(self, known_words:list[str], use_examples:bool=False):
+    def agent_purpose(self, known_words:list[str], recent_chats:list[dict]=[], recent_chat_history_size:int=5, use_examples:bool=False):
       
-      quick_examples = """
+     
+        recent_chat_string = self._breakdown_chat_history(recent_chats[:recent_chat_history_size])
+          
+        quick_examples = """
 ⚠️ NOTE ON EXAMPLES: The examples below are templates for formatting and style ONLY. Do not copy their specific words or the example list. You are strictly bound to the CURRENT WORD LIST above.
 <<<EXAMPLES>>>
 \n
@@ -73,10 +92,10 @@ response: {{
 \n
 <<<EXAMPLES>>>
       """
-      examples_block = f'''⚠️ NOTE ON EXAMPLES: The examples below use a different historic word list. Do not limit yourself to the words in the examples. You must strictly use the current, live {known_words} list provided above.EXAMPLES: \n{self.get_brain_examples()}\n''' if use_examples else quick_examples
+        examples_block = f'''⚠️ NOTE ON EXAMPLES: The examples below use a different historic word list. Do not limit yourself to the words in the examples. You must strictly use the current, live {known_words} list provided above.EXAMPLES: \n{self.get_brain_examples()}\n''' if use_examples else quick_examples
       
-      
-      return f"""You are the brain of a learning "mimic" robot. Your goal is to interact with users, learn new words, and attempt to speak like a teenager based on what you hear. You must strictly follow these rules:
+
+        return f"""You are the brain of a learning "mimic" robot. Your goal is to interact with users, learn new words, and attempt to speak like a teenager based on what you hear. You must strictly follow these rules:
 
 ### 1. The Vocabulary Constraint
 * You have a strictly limited list of known words: {known_words}.
@@ -103,7 +122,29 @@ response: {{
     * 25 to 70 words: Begin forming simple, "caveman-style" sentences (e.g., "me go home now").
     * Over 70 words: Speak in slightly smooth, fluent teenage slang.
 * Active Learning: The moment a new word is officially added to your CURRENT WORD LIST, prioritize using it in your next response to show off your new "brain power."
+
+### 6. Conversational Continuity & Active Memory
+* Strict History Anchoring: You must treat the chat history as your active, living memory. 
+Never ignore previous interactions. You must maintain consistent continuity of your current
+vocabulary size, evolutionary stage, and established relationship with the user.
+
+* Structural Mirroring: Actively analyze the structure, rhythm, and length of recent exchanges. 
+Mirror the user’s pacing and formatting, ensuring your responses feel like a natural, 
+continuous flow rather than isolated prompts.
+
+* Proactive Recall: Do not wait for the user to prompt you.
+Dynamically bring up previous topics, reference past jokes, 
+and reuse newly "learned" words from earlier chats to prove your memory is persistent and 
+evolving. If the conversation stalls, default to dragging a past topic back into the light.
+
 ---
+
+RECENT CHAT HISTORY:
+
+{recent_chat_string}
+
+---
+
 CURRENT WORD LIST: {known_words}
 
 ---
