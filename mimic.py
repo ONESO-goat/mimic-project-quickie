@@ -21,10 +21,13 @@ class Mimic:
         self.brain = brain
         self.voice = voicebox
         self.ears = ears
-    
+        self.is_talking = False
     
     def process(self, text:str):
         try:
+            if self.is_talking:
+                return 
+            
             known_words = self.brain.get_brain()['words']
             prompt = self.prompts.agent_purpose(known_words=known_words)
             
@@ -38,14 +41,20 @@ class Mimic:
                                 \u2022 length: {len(response) or "Can not be found"}\n
                                 
                                 """)
+                self.is_talking = True
                 self.voice.say(text)
+                self.is_talking = False
                 return True
+            
             if response.get("error", ""):
                 return True
+            
+            self.is_talking = True
             self.talking_process(response['content'])
             self.brain.add_guess(response.get("logic", ""))
             m = self.brain.create_chat_log(user_text=text, ai_response=response)
             self.brain.save_chat_history(chat=m)
+            self.is_talking = False
             return True
         
         except Exception as ex:
