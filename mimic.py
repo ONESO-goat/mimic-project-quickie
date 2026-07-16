@@ -21,12 +21,13 @@ class Mimic:
         self.brain = brain
         self.voice = voicebox
         self.ears = ears
-        self.is_talking = False
+        self.is_talking:bool = False
     
     def process(self, text:str):
         try:
             if self.is_talking:
-                return 
+                print("Mimic is busy")
+                return False
             
             known_words = self.brain.get_brain()['words']
             prompt = self.prompts.agent_purpose(known_words=known_words)
@@ -89,4 +90,9 @@ class Mimic:
         return what_was_heard
     
     def talking_process(self, agent_response:str):
+        
         self.voice.say(text=agent_response)
+        
+    
+    def mimic_is_busy(self)->bool:
+        return self.is_talking
