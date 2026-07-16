@@ -30,7 +30,10 @@ class Mimic:
                 return False
             
             known_words = self.brain.get_brain()['words']
-            prompt = self.prompts.agent_purpose(known_words=known_words)
+            prompt = self.prompts.agent_purpose(known_words=known_words, 
+                                                recent_chats=self.brain.get_chat_history(), 
+                                                recent_chat_history_size=10)
+            
             
             response = self.agent._genrate(text=text, system_prompt=prompt)
             
